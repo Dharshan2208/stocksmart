@@ -1,0 +1,68 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StockSmart Dashboard</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="dashboard-header">
+    <div class="brand">
+      <i class="fas fa-chart-line"></i>
+      <h1>StockSmart</h1>
+    </div>
+    <div class="controls">
+      <button id="themeToggle" class="icon-button">
+        <i class="fas fa-moon"></i>
+      </button>
+    </div>
+  </header>
+
+  <main class="dashboard-container">
+    <section class="search-section">
+      <form id="searchForm">
+        <input 
+          type="text" 
+          id="searchInput"
+          placeholder="Enter stock symbol (e.g. AAPL, MSFT, GOOGL)"
+          autocomplete="off"
+        >
+        <button type="submit">
+          <i class="fas fa-search"></i>
+        </button>
+      </form>
+      <div class="chart-controls">
+        <select id="chartType">
+          <option value="line">Line Chart</option>
+          <option value="bar">Bar Chart</option>
+        </select>
+        <select id="timeRange">
+          <option value="1M">1 Month</option>
+          <option value="3M">3 Months</option>
+          <option value="6M">6 Months</option>
+          <option value="1Y">1 Year</option>
+        </select>
+      </div>
+    </section>
+
+    <section class="data-section">
+      <div class="card stock-card" id="stockCard"></div>
+      <div class="card chart-card">
+        <div id="tooltip" class="tooltip"></div>
+        <canvas id="chartCanvas"></canvas>
+      </div>
+    </section>
+
+    <section class="news-section">
+      <h2>Latest News</h2>
+      <div class="news-grid" id="newsGrid"></div>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
