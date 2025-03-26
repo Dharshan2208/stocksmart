@@ -1,68 +1,105 @@
 <!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>StockSmart Dashboard</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <header class="dashboard-header">
-    <div class="brand">
-      <i class="fas fa-chart-line"></i>
-      <h1>StockSmart</h1>
-    </div>
-    <div class="controls">
-      <button id="themeToggle" class="icon-button">
-        <i class="fas fa-moon"></i>
-      </button>
-    </div>
-  </header>
-
-  <main class="dashboard-container">
-    <section class="search-section">
-      <form id="searchForm">
-        <input 
-          type="text" 
-          id="searchInput"
-          placeholder="Enter stock symbol (e.g. AAPL, MSFT, GOOGL)"
-          autocomplete="off"
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>StockSmart Dashboard</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="dashboard-header">
+      <div class="brand">
+        <i class="fas fa-chart-line"></i>
+        <h1>StockSmart</h1>
+      </div>
+      <div class="controls">
+        <button
+          id="themeToggle"
+          class="icon-button"
+          aria-label="Toggle dark mode"
         >
-        <button type="submit">
-          <i class="fas fa-search"></i>
+          <i class="fas fa-moon"></i>
         </button>
-      </form>
-      <div class="chart-controls">
-        <select id="chartType">
-          <option value="line">Line Chart</option>
-          <option value="bar">Bar Chart</option>
-        </select>
-        <select id="timeRange">
-          <option value="1M">1 Month</option>
-          <option value="3M">3 Months</option>
-          <option value="6M">6 Months</option>
-          <option value="1Y">1 Year</option>
-        </select>
       </div>
-    </section>
+    </header>
 
-    <section class="data-section">
-      <div class="card stock-card" id="stockCard"></div>
-      <div class="card chart-card">
-        <div id="tooltip" class="tooltip"></div>
-        <canvas id="chartCanvas"></canvas>
-      </div>
-    </section>
+    <main class="dashboard-container">
+      <section class="search-section">
+        <div class="search-container">
+          <form id="searchForm">
+            <div class="search-icon-left">
+              <i class="fas fa-search"></i>
+            </div>
+            <input
+              type="text"
+              id="searchInput"
+              placeholder="Enter stock symbol (e.g. AAPL, MSFT, GOOGL)"
+              autocomplete="off"
+              aria-label="Search for a stock"
+            />
+            <button type="submit" aria-label="Search">
+              <i class="fas fa-arrow-right"></i>
+            </button>
+          </form>
+        </div>
+        <div class="chart-controls">
+          <div class="control-group">
+            <label for="chartType">Chart Type</label>
+            <select id="chartType" aria-label="Select chart type">
+              <option value="line">Line Chart</option>
+              <option value="candlestick">Candlestick Chart</option>
+            </select>
+          </div>
+          <div class="control-group">
+            <label for="timeRange">Time Range</label>
+            <select id="timeRange" aria-label="Select time range">
+              <option value="1M">1 Month</option>
+              <option value="3M">3 Months</option>
+              <option value="6M">6 Months</option>
+              <option value="1Y">1 Year</option>
+            </select>
+          </div>
+        </div>
+      </section>
 
-    <section class="news-section">
-      <h2>Latest News</h2>
-      <div class="news-grid" id="newsGrid"></div>
-    </section>
-  </main>
+      <section class="data-section">
+        <div class="card stock-card" id="stockCard">
+          <!-- Stock data will be populated here -->
+        </div>
+        <div class="card chart-card">
+          <div id="tooltip" class="tooltip"></div>
+          <canvas id="chartCanvas"></canvas>
+        </div>
+      </section>
 
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="script.js"></script>
-</body>
+      <section class="news-section">
+        <h2><i class="fas fa-newspaper"></i> Latest News</h2>
+        <div class="news-filter">
+          <button class="news-filter-btn active" data-filter="all">
+            All News
+          </button>
+          <button class="news-filter-btn" data-filter="positive">
+            Positive
+          </button>
+          <button class="news-filter-btn" data-filter="negative">
+            Negative
+          </button>
+        </div>
+        <div class="news-grid" id="newsGrid">
+          <!-- News items will be populated here -->
+        </div>
+      </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.29.4/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-moment@1.0.1/dist/chartjs-adapter-moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-financial@0.1.1/dist/chartjs-chart-financial.min.js"></script>
+    <script src="script.js"></script>
+  </body>
 </html>
